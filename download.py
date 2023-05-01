@@ -1,20 +1,21 @@
 import torch
-from transformers import T5Tokenizer, T5ForConditionalGeneration, pipeline
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 
 
 def download_model():
     """download model during docker image  setup
     so it will be in cache before app.py and http_api kick-in"""
 
-    tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-xl")
-    model = T5ForConditionalGeneration.from_pretrained(
-        "google/flan-t5-xl", 
-        device_map="auto", 
+    tokenizer = AutoTokenizer.from_pretrained(
+        "TheBloke/medalpaca-13B-GPTQ-4bit")
+    model = AutoModelForCausalLM.from_pretrained(
+        "TheBloke/medalpaca-13B-GPTQ-4bit",
+        device_map="auto",
         torch_dtype=torch.float16
     )
-    
+
     pipeline(
-        "text2text-generation", model=model, tokenizer=tokenizer
+        "question-answering", model=model, tokenizer=tokenizer
     )
 
 

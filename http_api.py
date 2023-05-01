@@ -14,7 +14,9 @@ class PromptInput(BaseModel):
     context: str = ""
     question: str = ""
 
+
 http_api = FastAPI()
+
 
 @http_api.get("/healthcheck")
 async def healthcheck():
@@ -24,6 +26,7 @@ async def healthcheck():
         gpu = True
 
     return {"state": "healthy", "gpu": gpu}
+
 
 @http_api.post("/")
 async def inference(prompt: PromptInput):
@@ -39,4 +42,3 @@ async def inference(prompt: PromptInput):
 
 if __name__ == "__main__":
     uvicorn.run(http_api, host="0.0.0.0", port=8000)
-
