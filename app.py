@@ -1,9 +1,5 @@
 import torch
 from transformers import pipeline, AutoModelForCausalLM, AutoTokenizer
-from langchain import HuggingFacePipeline
-from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
-
 from decorators import logger, timeit
 
 
