@@ -6,7 +6,7 @@ import dotenv
 dotenv.load_dotenv(".env")
 
 api_key = os.environ.get("BANANA_DEV_API_KEY", None)
-model_key = os.environ.get("T5_QA_MODEL_KEY", None)
+model_key = os.environ.get("MODEL_KEY", None)
 
 payload = {
     "context": """Land Rover is a British brand of predominantly four-wheel drive, off-road capable vehicles, owned by multinational car manufacturer Jaguar Land Rover (JLR), since 2008 a subsidiary of India's Tata Motors.[3] JLR currently builds Land Rovers in Brazil, China, India, Slovakia, and the United Kingdom. The Land Rover name was created in 1948 by the Rover Company for a utilitarian 4WD off-road vehicle; currently, the Land Rover range comprises solely of upmarket and luxury sport utility vehicles.
@@ -18,7 +18,7 @@ For half a century (from the original 1948 model, through 1997, when the Freelan
 Since 2010, Land Rover has also introduced two-wheel drive variants, both of the Freelander, and of the Evoque, after having built exclusively 4WD cars for 62 years.[7] The 2WD Freelander has been succeeded by a 2WD Discovery Sport, available in some markets.[8]
 """,
     "question": "What are Land Rover line-up products?"
-    }
+}
 
 out = banana.run(api_key, model_key, payload)
 print(out["modelOutputs"][0])
